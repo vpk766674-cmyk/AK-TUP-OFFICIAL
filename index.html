@@ -1,107 +1,138 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <title>AK TUP OFFICIAL - Free Fire Diamond Top-Up</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AK TUP OFFICIAL - Free Fire Diamond Topup</title>
+
     <style>
-        body{
+        body {
             font-family: Arial, sans-serif;
-            background:#111;
+            background:#0d0d0d;
             color:white;
             margin:0;
             padding:0;
-            text-align:center;
         }
         header{
-            background:#ff7200;
-            padding:20px;
-            font-size:28px;
+            background:#ff5500;
+            padding:15px;
+            text-align:center;
+            font-size:22px;
             font-weight:bold;
         }
         .container{
-            max-width:450px;
-            background:#1c1c1c;
-            margin:30px auto;
-            padding:20px;
+            padding:15px;
+        }
+        .input-box{
+            background:#1a1a1a;
+            padding:15px;
             border-radius:10px;
-            box-shadow:0 0 10px #ff7200;
+            margin-bottom:20px;
         }
         input, select{
-            width:90%;
+            width:100%;
             padding:12px;
-            margin-top:10px;
-            border-radius:6px;
             border:none;
-            font-size:16px;
+            border-radius:8px;
+            margin-top:8px;
+            margin-bottom:15px;
         }
-        button{
-            width:95%;
-            background:#ff7200;
-            color:black;
-            padding:14px;
-            font-size:20px;
-            border:none;
-            border-radius:6px;
-            margin-top:15px;
-            font-weight:bold;
-            cursor:pointer;
-        }
-        .pay-box{
-            background:#222;
-            padding:15px;
-            margin-top:15px;
-            border-radius:6px;
-            color:#ff7200;
+        .btn{
+            background:#ff5500;
+            color:white;
+            padding:12px;
+            width:100%;
+            text-align:center;
+            display:block;
+            border-radius:8px;
             font-size:18px;
+        }
+        .diamond-box{
+            background:#1a1a1a;
+            padding:15px;
+            border-radius:10px;
+            margin-bottom:10px;
+        }
+        .price{
+            color:#00ff99;
+            font-weight:bold;
         }
     </style>
 </head>
+
 <body>
 
-<header>
-    AK TUP OFFICIAL - Diamond Top-Up
-</header>
+<header>AK TUP OFFICIAL</header>
 
 <div class="container">
 
-    <h2>ফ্রি ফায়ার ডায়মন্ড টপআপ</h2>
-
-    <!-- Payment Info -->
-    <div class="pay-box">
-        📌 বিকাশ (Send Money): **01797211045**<br>
-        📌 নগদ (Send Money): **01797211045**
+    <div class="input-box">
+        <label>Free Fire Player ID</label>
+        <input type="number" id="uid" placeholder="Enter Player ID">
     </div>
 
-    <p>পেমেন্ট করার পর নিচের ফর্ম পূরণ করুন ✔</p>
+    <h2>💎 Diamond List (First Top-Up 30TK Discount)</h2>
 
-    <!-- Form Submit -->
-    <form action="https://formsubmit.co/vpk766674@gmail.com" method="POST">
+    <div class="diamond-box">25 💎 — <span class="price">24 TK</span></div>
+    <div class="diamond-box">50 💎 — <span class="price">38 TK</span></div>
+    <div class="diamond-box">115 💎 — <span class="price">80 TK</span></div>
 
-        <input type="number" name="uid" placeholder="Free Fire UID লিখুন" required>
+    <div class="diamond-box">240 💎 — <span class="price">132 TK</span></div>
+    <div class="diamond-box">355 💎 — <span class="price">215 TK</span></div>
+    <div class="diamond-box">505 💎 — <span class="price">320 TK</span></div>
+    <div class="diamond-box">610 💎 — <span class="price">385 TK</span></div>
+    <div class="diamond-box">850 💎 — <span class="price">545 TK</span></div>
+    <div class="diamond-box">1090 💎 — <span class="price">710 TK</span></div>
+    <div class="diamond-box">1240 💎 — <span class="price">795 TK</span></div>
+    <div class="diamond-box">1720 💎 — <span class="price">1130 TK</span></div>
+    <div class="diamond-box">2090 💎 — <span class="price">1380 TK</span></div>
+    <div class="diamond-box">2530 💎 — <span class="price">1610 TK</span></div>
+    <div class="diamond-box">5060 💎 — <span class="price">3230 TK</span></div>
+    <div class="diamond-box">10120 💎 — <span class="price">6470 TK</span></div>
 
-        <select name="diamond_pack" required>
-            <option value="">ডায়মন্ড প্যাক সিলেক্ট করুন</option>
-            <option>100 Diamond</option>
-            <option>210 Diamond</option>
-            <option>530 Diamond</option>
-            <option>1080 Diamond</option>
-            <option>2200 Diamond</option>
+    <div class="diamond-box">Level Up Pass — <span class="price">130 TK</span></div>
+
+    <div class="input-box">
+        <label>Payment Method</label>
+        <select id="payment">
+            <option>Bkash (01797211045)</option>
+            <option>Nagad (01797211045)</option>
         </select>
 
-        <input type="text" name="trxid" placeholder="পেমেন্ট Transaction ID লিখুন" required>
+        <label>Transaction ID</label>
+        <input type="text" id="trxid" placeholder="Enter Transaction ID">
 
-        <input type="text" name="payment_number" placeholder="যে নম্বর থেকে Send Money করেছেন" required>
+        <label>Your Phone Number</label>
+        <input type="number" id="number" placeholder="Your Mobile Number">
+    </div>
 
-        <!-- Hidden Settings -->
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-
-        <button type="submit">Submit & Verify</button>
-    </form>
+    <a class="btn" onclick="submitOrder()">Submit Order</a>
 
 </div>
+
+<script>
+function submitOrder() {
+    let uid = document.getElementById("uid").value;
+    let trxid = document.getElementById("trxid").value;
+    let number = document.getElementById("number").value;
+    let payment = document.getElementById("payment").value;
+
+    if(uid=="" || trxid=="" || number==""){
+        alert("Please fill all information.");
+        return;
+    }
+
+    let message =
+        "🟧 AK TUP OFFICIAL NEW ORDER\n\n" +
+        "👤 UID: " + uid + "\n" +
+        "💳 Payment: " + payment + "\n" +
+        "🔑 TXN ID: " + trxid + "\n" +
+        "📱 Phone: " + number + "\n";
+
+    window.location.href =
+        "mailto:vpk766674@gmail.com?subject=New%20Topup%20Order&body=" + encodeURIComponent(message);
+}
+</script>
 
 </body>
 </html>
