@@ -1,138 +1,35 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AK TUP OFFICIAL - Free Fire Diamond Topup</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard - AK TUP</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background:#0d0d0d;
-            color:white;
-            margin:0;
-            padding:0;
-        }
-        header{
-            background:#ff5500;
-            padding:15px;
-            text-align:center;
-            font-size:22px;
-            font-weight:bold;
-        }
-        .container{
-            padding:15px;
-        }
-        .input-box{
-            background:#1a1a1a;
-            padding:15px;
-            border-radius:10px;
-            margin-bottom:20px;
-        }
-        input, select{
-            width:100%;
-            padding:12px;
-            border:none;
-            border-radius:8px;
-            margin-top:8px;
-            margin-bottom:15px;
-        }
-        .btn{
-            background:#ff5500;
-            color:white;
-            padding:12px;
-            width:100%;
-            text-align:center;
-            display:block;
-            border-radius:8px;
-            font-size:18px;
-        }
-        .diamond-box{
-            background:#1a1a1a;
-            padding:15px;
-            border-radius:10px;
-            margin-bottom:10px;
-        }
-        .price{
-            color:#00ff99;
-            font-weight:bold;
-        }
-    </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background:#060708; color:#fff; min-height:100vh; }
+    .topbar { background: linear-gradient(90deg,#ff3b3b,#ff6600); padding:18px; color:#fff; }
+    .card { background:#0f1113; border-radius:12px; }
+    .btn-logout { background:#222; border:1px solid #444; color:#fff; }
+  </style>
 </head>
-
 <body>
+  <div class="topbar text-center">
+    <h4 class="mb-0">AK TUP OFFICIAL — Dashboard</h4>
+  </div>
 
-<header>AK TUP OFFICIAL</header>
+  <div class="container py-4">
+    <div class="card p-4">
+      <h5>Welcome, <span id="userEmail">...</span></h5>
+      <p id="userId" class="small text-muted"></p>
 
-<div class="container">
-
-    <div class="input-box">
-        <label>Free Fire Player ID</label>
-        <input type="number" id="uid" placeholder="Enter Player ID">
+      <div class="mt-3">
+        <button id="logoutBtn" class="btn btn-logout">Logout</button>
+      </div>
     </div>
+  </div>
 
-    <h2>💎 Diamond List (First Top-Up 30TK Discount)</h2>
-
-    <div class="diamond-box">25 💎 — <span class="price">24 TK</span></div>
-    <div class="diamond-box">50 💎 — <span class="price">38 TK</span></div>
-    <div class="diamond-box">115 💎 — <span class="price">80 TK</span></div>
-
-    <div class="diamond-box">240 💎 — <span class="price">132 TK</span></div>
-    <div class="diamond-box">355 💎 — <span class="price">215 TK</span></div>
-    <div class="diamond-box">505 💎 — <span class="price">320 TK</span></div>
-    <div class="diamond-box">610 💎 — <span class="price">385 TK</span></div>
-    <div class="diamond-box">850 💎 — <span class="price">545 TK</span></div>
-    <div class="diamond-box">1090 💎 — <span class="price">710 TK</span></div>
-    <div class="diamond-box">1240 💎 — <span class="price">795 TK</span></div>
-    <div class="diamond-box">1720 💎 — <span class="price">1130 TK</span></div>
-    <div class="diamond-box">2090 💎 — <span class="price">1380 TK</span></div>
-    <div class="diamond-box">2530 💎 — <span class="price">1610 TK</span></div>
-    <div class="diamond-box">5060 💎 — <span class="price">3230 TK</span></div>
-    <div class="diamond-box">10120 💎 — <span class="price">6470 TK</span></div>
-
-    <div class="diamond-box">Level Up Pass — <span class="price">130 TK</span></div>
-
-    <div class="input-box">
-        <label>Payment Method</label>
-        <select id="payment">
-            <option>Bkash (01797211045)</option>
-            <option>Nagad (01797211045)</option>
-        </select>
-
-        <label>Transaction ID</label>
-        <input type="text" id="trxid" placeholder="Enter Transaction ID">
-
-        <label>Your Phone Number</label>
-        <input type="number" id="number" placeholder="Your Mobile Number">
-    </div>
-
-    <a class="btn" onclick="submitOrder()">Submit Order</a>
-
-</div>
-
-<script>
-function submitOrder() {
-    let uid = document.getElementById("uid").value;
-    let trxid = document.getElementById("trxid").value;
-    let number = document.getElementById("number").value;
-    let payment = document.getElementById("payment").value;
-
-    if(uid=="" || trxid=="" || number==""){
-        alert("Please fill all information.");
-        return;
-    }
-
-    let message =
-        "🟧 AK TUP OFFICIAL NEW ORDER\n\n" +
-        "👤 UID: " + uid + "\n" +
-        "💳 Payment: " + payment + "\n" +
-        "🔑 TXN ID: " + trxid + "\n" +
-        "📱 Phone: " + number + "\n";
-
-    window.location.href =
-        "mailto:vpk766674@gmail.com?subject=New%20Topup%20Order&body=" + encodeURIComponent(message);
-}
-</script>
-
+  <script type="module" src="auth.js"></script>
 </body>
 </html>
