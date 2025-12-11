@@ -1,0 +1,280 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AK TUP OFFICIAL — Dashboard</title>
+  <style>
+    :root{
+      --bg:#0b0d10; --card:#101317; --accent:#ff6b35; --muted:#9aa0a6; --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box;font-family:Inter, system-ui, Arial;}
+    body{margin:0; background:linear-gradient(180deg,#0b0d10,#071017); color:#e6eef3; min-height:100vh;}
+    header{background:linear-gradient(90deg,var(--accent),#ff8a5b); padding:18px 20px; text-align:center; font-weight:700; font-size:20px; color:#fff;}
+    .container{max-width:980px;margin:20px auto;padding:16px;}
+    .row{display:flex;gap:16px;flex-wrap:wrap;}
+    .card{background:var(--card); padding:16px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.6); flex:1 1 320px;}
+    .small{flex:1 1 220px;}
+    h3{margin:0 0 8px 0;color:#fff;}
+    p{margin:6px 0;color:var(--muted);}
+    .balance{font-size:28px;font-weight:700;margin-top:8px;}
+    button{background:transparent;border:1px solid rgba(255,255,255,0.08);color:#fff;padding:10px 14px;border-radius:8px;cursor:pointer;}
+    .actions{display:flex;gap:10px;margin-top:12px;}
+    .btn-primary{background:var(--accent);border:none;padding:10px 14px;border-radius:8px;color:#111;font-weight:700;}
+    .list{margin-top:12px;}
+    .list-item{display:flex;justify-content:space-between;padding:8px;border-radius:8px;background:var(--glass);margin-bottom:8px;}
+    .center{text-align:center;}
+    .logout{background:transparent;border:1px solid rgba(255,255,255,0.15);padding:8px 12px;border-radius:8px;color:#fff;}
+    .buy-grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+    .buy-option{background:rgba(255,255,255,0.03);padding:10px;border-radius:10px;min-width:120px;text-align:center;cursor:pointer;border:1px solid rgba(255,255,255,0.03);}
+    .history{max-height:300px;overflow:auto;padding-right:6px;}
+    .muted{color:var(--muted);font-size:13px;}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;}
+    .uid{font-size:12px;color:var(--muted);word-break:break-all;}
+    @media (max-width:640px){ .row{flex-direction:column;} .small{flex:unset;} }
+  </style>
+</head>
+<body>
+
+<header>AK TUP OFFICIAL — Dashboard</header>
+
+<div class="container">
+
+  <div class="topbar card">
+    <div>
+      <h3 id="welcome">Welcome, —</h3>
+      <div class="uid" id="uidDisplay">UID: —</div>
+    </div>
+    <div class="center">
+      <button class="logout" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:14px;">
+    <div class="card small">
+      <p class="muted">Balance (৳)</p>
+      <div class="balance" id="balance">0</div>
+
+      <div class="actions">
+        <button id="addFundsBtn" class="btn-primary">Top Up</button>
+        <button id="withdrawBtn">Withdraw</button>
+      </div>
+
+      <div style="margin-top:12px;">
+        <p class="muted">Diamond</p>
+        <div style="font-weight:700;font-size:22px;" id="diamonds">0</div>
+      </div>
+
+      <div style="margin-top:12px;">
+        <p class="muted">Quick Buy</p>
+        <div class="buy-grid">
+          <div class="buy-option" data-d="20" data-price="20">20 Diamond<br><span class="muted">৳20</span></div>
+          <div class="buy-option" data-d="50" data-price="45">50 Diamond<br><span class="muted">৳45</span></div>
+          <div class="buy-option" data-d="100" data-price="85">100 Diamond<br><span class="muted">৳85</span></div>
+          <div class="buy-option" data-d="500" data-price="400">500 Diamond<br><span class="muted">৳400</span></div>
+          <div class="buy-option" data-d="1000" data-price="700">1000 Diamond<br><span class="muted">৳700</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card" style="flex:1 1 620px;">
+      <h3>Transaction History</h3>
+      <div class="history" id="txList">
+        <p class="muted">No transactions yet.</p>
+      </div>
+
+      <div style="margin-top:12px;">
+        <h3>Actions & Details</h3>
+        <p class="muted">Use the buttons to top-up (simulate), buy diamonds (deduct balance + add diamonds), withdraw (simulate) and view transactions.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Firebase (CDN module) -->
+<script type="module">
+  // ------------- IMPORTANT: Replace config values with your project's -------------
+  // Your Firebase Config (from Firebase Console -> Project settings -> SDK setup)
+  const firebaseConfig = {
+    apiKey: "AIzaSyBP-rRs3PMpnLJN5ioJHY6vlAhXEwhh-Xc", // <-- আপনার apiKey
+    authDomain: "ak-tup-offlclal.firebaseapp.com",     // <-- আপনার authDomain
+    projectId: "ak-tup-offlclal",                      // <-- আপনার projectId
+    storageBucket: "ak-tup-offlclal.appspot.com",
+    messagingSenderId: "526899333324",
+    appId: "1:526899333324:web:e29889503231e873ec9a69" // <-- আপনার appId
+  };
+
+  // ------------- IMPORT FIREBASE MODULES -------------
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+  import {
+    getFirestore, doc, getDoc, setDoc,
+    updateDoc, collection, addDoc, query, where, getDocs, orderBy, serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+
+  // ------------- INIT FIREBASE -------------
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // UI elements
+  const welcome = document.getElementById('welcome');
+  const uidDisplay = document.getElementById('uidDisplay');
+  const balanceEl = document.getElementById('balance');
+  const diamondsEl = document.getElementById('diamonds');
+  const txList = document.getElementById('txList');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const addFundsBtn = document.getElementById('addFundsBtn');
+  const withdrawBtn = document.getElementById('withdrawBtn');
+  const buyOptions = document.querySelectorAll('.buy-option');
+
+  let currentUser = null;
+  let userDocRef = null;
+
+  // if no auth -> redirect to login
+  function goToLogin(){
+    // Change path if your login page name different
+    window.location.href = 'login.html';
+  }
+
+  // Ensure user document exists (balance, diamonds)
+  async function ensureUserDoc(uid, email){
+    userDocRef = doc(db, 'users', uid);
+    const snap = await getDoc(userDocRef);
+    if(!snap.exists()){
+      await setDoc(userDocRef, {
+        email: email || '',
+        balance: 0,
+        diamonds: 0,
+        createdAt: serverTimestamp()
+      });
+    }
+  }
+
+  // Fetch and render user data + transactions
+  async function refreshUI(){
+    if(!currentUser) return;
+    const snap = await getDoc(userDocRef);
+    const data = snap.exists() ? snap.data() : {balance:0, diamonds:0};
+    balanceEl.innerText = Number(data.balance || 0).toFixed(2);
+    diamondsEl.innerText = data.diamonds || 0;
+    // Load last 50 transactions
+    const q = query(collection(db, 'transactions'), where('uid','==',currentUser.uid), orderBy('createdAt','desc'));
+    const querySnap = await getDocs(q);
+    txList.innerHTML = '';
+    if(querySnap.empty){
+      txList.innerHTML = '<p class="muted">No transactions yet.</p>';
+    } else {
+      querySnap.forEach(docSnap=>{
+        const t = docSnap.data();
+        const el = document.createElement('div');
+        el.className = 'list-item';
+        el.innerHTML = `<div>
+                          <div style="font-weight:600">${t.type}</div>
+                          <div class="muted">${t.note || ''} • ${new Date(t.createdAt?.seconds * 1000 || Date.now()).toLocaleString()}</div>
+                        </div>
+                        <div style="text-align:right;">
+                          <div style="font-weight:700">${t.amount>0?'+':'-'}৳${Math.abs(t.amount).toFixed(2)}</div>
+                          <div class="muted">${t.diamonds? t.diamonds + ' 💎':''}</div>
+                        </div>`;
+        txList.appendChild(el);
+      });
+    }
+  }
+
+  // Add a transaction record
+  async function addTransaction(uid, type, amount, diamonds=0, note=''){
+    await addDoc(collection(db,'transactions'), {
+      uid, type, amount, diamonds, note, createdAt: serverTimestamp()
+    });
+  }
+
+  // Top-up (simulate)
+  async function topUp(){
+    const amtStr = prompt('টপ-আপ করুন (৳): লিখুন সংখ্যায়, উদাহরণ: 100');
+    if(!amtStr) return;
+    const amt = parseFloat(amtStr);
+    if(isNaN(amt) || amt <= 0){ alert('ভুল ইনপুট'); return; }
+    // update balance
+    const snap = await getDoc(userDocRef);
+    const current = (snap.data().balance || 0);
+    const newBal = current + amt;
+    await updateDoc(userDocRef, { balance: newBal });
+    await addTransaction(currentUser.uid, 'Top Up', amt, 0, 'Manual top-up (simulated)');
+    alert('Top-up সফল হয়েছে!');
+    await refreshUI();
+  }
+
+  // Withdraw (simulate)
+  async function withdraw(){
+    const amtStr = prompt('Withdraw amount (৳): লিখুন সংখ্যায়');
+    if(!amtStr) return;
+    const amt = parseFloat(amtStr);
+    if(isNaN(amt) || amt <= 0){ alert('ভুল ইনপুট'); return; }
+    const snap = await getDoc(userDocRef);
+    const current = (snap.data().balance || 0);
+    if(amt > current){ alert('পর্যাপ্ত ব্যালেন্স নেই'); return; }
+    const newBal = current - amt;
+    await updateDoc(userDocRef, { balance: newBal });
+    await addTransaction(currentUser.uid, 'Withdraw', -amt, 0, 'Manual withdraw (simulated)');
+    alert('Withdraw সফল হয়েছে!');
+    await refreshUI();
+  }
+
+  // Buy diamonds
+  async function buyDiamonds(diamondCount, price){
+    const confirmBuy = confirm(`আপনি কি ${diamondCount} Diamond (৳${price}) কিনতে চান?`);
+    if(!confirmBuy) return;
+    const snap = await getDoc(userDocRef);
+    const currentBal = (snap.data().balance || 0);
+    if(price > currentBal){ alert('Balance কম আছে — আগে Top Up করুন'); return; }
+    const newBal = currentBal - price;
+    const newDiamonds = (snap.data().diamonds || 0) + Number(diamondCount);
+    await updateDoc(userDocRef, { balance: newBal, diamonds: newDiamonds });
+    await addTransaction(currentUser.uid, 'Buy Diamond', -price, diamondCount, `Bought ${diamondCount} diamonds`);
+    alert('Diamond ক্রয় সম্পন্ন!');
+    await refreshUI();
+  }
+
+  // Logout
+  logoutBtn.addEventListener('click', async ()=>{
+    await signOut(auth);
+    goToLogin();
+  });
+
+  addFundsBtn.addEventListener('click', topUp);
+  withdrawBtn.addEventListener('click', withdraw);
+
+  buyOptions.forEach(opt=>{
+    opt.addEventListener('click', ()=>{
+      const d = Number(opt.dataset.d);
+      const p = Number(opt.dataset.price);
+      buyDiamonds(d, p);
+    });
+  });
+
+  // Auth state
+  onAuthStateChanged(auth, async (user)=>{
+    if(!user){
+      // not logged in
+      goToLogin();
+      return;
+    }
+    currentUser = user;
+    welcome.innerText = `Welcome, ${user.email || 'User'}`;
+    uidDisplay.innerText = `UID: ${user.uid}`;
+    // ensure user doc exists
+    await ensureUserDoc(user.uid, user.email);
+    // refresh UI
+    await refreshUI();
+  });
+
+  // If you want to allow direct open of dashboard when user not logged in, comment redirect above.
+</script>
+
+</body>
+            </html>
