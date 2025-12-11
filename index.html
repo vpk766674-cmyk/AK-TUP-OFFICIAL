@@ -1,1 +1,142 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FF Topup System</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; background:#111; color:white; }
+    .container { max-width: 500px; margin: auto; padding: 20px; }
+    .card { background: #1c1c1c; padding: 20px; border-radius: 10px; margin-bottom:15px; }
+    input, select { width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border:none; }
+    button { width:100%; padding:12px; background:#ff4800; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer; }
+    h2, h3 { color:#ff4800; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+  <div class="container"><!-- REGISTER PAGE -->
+<div id="registerPage" class="card">
+  <h2>Register</h2>
+  <input id="regEmail" type="email" placeholder="Email" />
+  <input id="regPass" type="password" placeholder="Password" />
+  <button onclick="register()">Register</button>
+  <p onclick="showLogin()" style="color:#bbb; cursor:pointer;">Already have an account? Login</p>
+</div>
 
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="card hidden">
+  <h2>Login</h2>
+  <input id="logEmail" type="email" placeholder="Email" />
+  <input id="logPass" type="password" placeholder="Password" />
+  <button onclick="login()">Login</button>
+  <p onclick="showRegister()" style="color:#bbb; cursor:pointer;">Create New Account</p>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden">
+  <div class="card">
+    <h2 id="userName">Welcome</h2>
+    <p id="userEmail"></p>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <div class="card">
+    <h3>Diamond Top-up</h3>
+    <label>Free Fire UID:</label>
+    <input id="ffuid" type="number" placeholder="Enter UID" />
+
+    <label>Select Diamond:</label>
+    <select id="diamond">
+      <option value="20">20💎 - 20 Taka</option>
+      <option value="50">50💎 - 50 Taka</option>
+      <option value="100">100💎 - 95 Taka</option>
+      <option value="200">200💎 - 190 Taka</option>
+      <option value="500">500💎 - 480 Taka</option>
+    </select>
+
+    <label>Payment Method:</label>
+    <select id="payment">
+      <option value="Bkash">Bkash</option>
+      <option value="Nagad">Nagad</option>
+      <option value="Rocket">Rocket</option>
+    </select>
+
+    <button onclick="placeOrder()">Place Order</button>
+  </div>
+
+  <div class="card">
+    <h3>Order History</h3>
+    <div id="history" style="font-size:14px; color:#ccc;"></div>
+  </div>
+</div>
+
+  </div>  <script>
+    let users = JSON.parse(localStorage.getItem('users') || '{}');
+    let current = localStorage.getItem('currentUser');
+
+    function showLogin(){
+      document.getElementById('registerPage').classList.add('hidden');
+      document.getElementById('loginPage').classList.remove('hidden');
+    }
+    function showRegister(){
+      document.getElementById('loginPage').classList.add('hidden');
+      document.getElementById('registerPage').classList.remove('hidden');
+    }
+
+    function register(){
+      let email = regEmail.value;
+      let pass = regPass.value;
+      if(!email || !pass) return alert('Fill all fields');
+      if(users[email]) return alert('Already registered');
+      users[email] = {password: pass, history:[]};
+      localStorage.setItem('users', JSON.stringify(users));
+      alert('Registration Successful');
+      showLogin();
+    }
+
+    function login(){
+      let email = logEmail.value;
+      let pass = logPass.value;
+      if(!users[email]) return alert('No user found');
+      if(users[email].password !== pass) return alert('Wrong password');
+      current = email;
+      localStorage.setItem('currentUser', email);
+      loadDashboard();
+    }
+
+    function loadDashboard(){
+      if(!current) return;
+      document.getElementById('loginPage').classList.add('hidden');
+      document.getElementById('registerPage').classList.add('hidden');
+      document.getElementById('dashboard').classList.remove('hidden');
+      userEmail.innerText = current;
+      userName.innerText = 'Welcome ' + current.split('@')[0];
+      loadHistory();
+    }
+
+    function logout(){
+      localStorage.removeItem('currentUser');
+      location.reload();
+    }
+
+    function placeOrder(){
+      let uid = ffuid.value;
+      let dia = diamond.value;
+      let pay = payment.value;
+      if(!uid) return alert('Enter UID');
+
+      users[current].history.push(`UID: ${uid} | ${dia}💎 | Pay: ${pay}`);
+      localStorage.setItem('users', JSON.stringify(users));
+
+      alert('Order Placed Successfully');
+      loadHistory();
+    }
+
+    function loadHistory(){
+      let h = users[current].history;
+      history.innerHTML = h.map(i => `<p>• ${i}</p>`).join('');
+    }
+
+    if(current){ loadDashboard(); }
+  </script></body>
+        </html>
