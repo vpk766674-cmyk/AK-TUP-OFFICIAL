@@ -1,33 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TopUp</title>
+<title>Topup</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Select Top-Up</h2>
+<h2>Topup Service</h2>
+<select id="game">
+<option value="Free Fire">Free Fire</option>
+<option value="PUBG">PUBG</option>
+</select>
 
-    <label>Player ID:</label>
-    <input id="playerId" type="text" placeholder="Enter Player ID" />
+<input id="playerID" placeholder="Player ID"><br>
 
-    <label>Amount:</label>
-    <select id="amount">
-        <option value="50">50 Diamond</option>
-        <option value="100">100 Diamond</option>
-        <option value="500">500 Diamond</option>
-    </select>
+<select id="amount">
+<option value="100">100 Diamond - 90৳</option>
+<option value="500">500 Diamond - 430৳</option>
+<option value="1000">1000 Diamond - 850৳</option>
+</select>
 
-    <h3>Payment Numbers</h3>
-    <p><b>Bkash:</b> 01797211045</p>
-    <p><b>Nagad:</b> 01330623352</p>
-    <p><b>Upay:</b> 01800000000</p>
+<h3>Payment</h3>
+<p>Bkash: <b>01797211045</b></p>
+<p>Nagad: <b>01330623352</b></p>
 
-    <label>Txn ID:</label>
-    <input id="txnId" type="text" placeholder="Enter Payment Txn ID" />
+<input id="trxID" placeholder="Transaction ID"><br>
+<button id="orderBtn">Submit Order</button>
 
-    <button id="submitOrder">Submit Order</button>
-
-    <script type="module" src="js/main.js"></script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
