@@ -1,20 +1,120 @@
-body {
-    font-family: Arial;
-    text-align: center;
-    background: #f2f2f2;
-}
-input, select {
-    margin: 10px;
-    padding: 10px;
-    width: 250px;
-}
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
-}
-.menu a {
-    display: block;
-    margin: 10px;
-    font-size: 20px;
-}
+<!-- ========================= INDEX.HTML (HOME PAGE) ========================= --><!DOCTYPE html><html>
+<head>
+  <meta charset="utf-8" />
+  <title>AK TUP OFFICIAL — Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>AK TUP OFFICIAL</header>  <div class="container">
+    <div class="card">
+      <h2>Welcome!</h2>
+      <p>Fast & Trusted Topup Service • Free Fire • PUBG • MLBB</p>
+      <a href="login.html"><button>Login</button></a>
+      <a href="register.html"><button>Register</button></a>
+      <a href="topup.html"><button>Topup Now</button></a>
+    </div>
+  </div></body>
+</html><!-- ========================= LOGIN.HTML ========================= --><!DOCTYPE html><html>
+<head>
+  <meta charset="utf-8" />
+  <title>Login — AK TUP OFFICIAL</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>Login</header>
+  <div class="auth-box">
+    <h2>Login Account</h2>
+    <input id="login-email" placeholder="Email" />
+    <input id="login-password" type="password" placeholder="Password" />
+    <button id="login-btn">Login</button>
+    <p style="text-align:center;margin-top:10px;">Don't have an account? <a href="register.html">Register</a></p>
+  </div>
+</body>
+</html><!-- ========================= REGISTER.HTML ========================= --><!DOCTYPE html><html>
+<head>
+  <meta charset="utf-8" />
+  <title>Register — AK TUP OFFICIAL</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>Register</header>
+  <div class="auth-box">
+    <h2>Create Account</h2>
+    <input id="reg-email" placeholder="Email" />
+    <input id="reg-password" type="password" placeholder="Password" />
+    <button id="reg-btn">Register</button>
+    <p style="text-align:center;margin-top:10px;">Already have an account? <a href="login.html">Login</a></p>
+  </div>
+</body>
+</html><!-- ========================= TOPUP.HTML ========================= --><!DOCTYPE html><html>
+<head>
+  <meta charset="utf-8" />
+  <title>Topup — AK TUP OFFICIAL</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>Topup</header>
+  <div class="container"><div class="card">
+  <h2>Wallet Balance: <span id="wallet-balance">0৳</span></h2>
+  <button id="add-money-btn">Add Money</button>
+</div>
+
+<div class="card">
+  <h2>Free Fire Live Prices</h2>
+  <table class="price-table">
+    <tbody id="ff-price"></tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Make an Order</h2>
+  <label>Game</label>
+  <select id="game">
+    <option value="free_fire">Free Fire</option>
+    <option value="pubg">PUBG</option>
+    <option value="mlbb">MLBB</option>
+  </select>
+
+  <label>Player ID</label>
+  <input id="player-id" placeholder="Enter Player ID" />
+
+  <label>Diamond / UC Amount</label>
+  <select id="price-select"></select>
+
+  <h3>Payment Numbers</h3>
+  <p>Bkash (Personal): <b>01797211045</b></p>
+  <p>Nagad (Personal): <b>01330623352</b></p>
+
+  <label>Txn ID</label>
+  <input id="txn-id" placeholder="Transaction ID" />
+
+  <button id="submit-order">Submit Order</button>
+</div>
+
+  </div>  <script type="module" src="js/main.js"></script></body>
+</html><!-- ========================= ADMIN.HTML ========================= --><!DOCTYPE html><html>
+<head>
+  <meta charset="utf-8" />
+  <title>Admin Panel — AK TUP OFFICIAL</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>Admin Panel</header>  <div class="container">
+    <div class="card">
+      <h2>All Orders</h2>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>User</th><th>Game</th><th>Amount</th><th>Txn</th><th>Status</th><th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="admin-orders"></tbody>
+      </table>
+    </div>
+  </div>  <script type="module" src="js/admin.js"></script></body>
+</html><!-- ========================= JS/AUTH.JS (PLACEHOLDER) ========================= --><script>
+// Firebase Config placeholder
+// (You will paste your Firebase config here)
+</script><!-- ========================= JS/MAIN.JS (PLACEHOLDER) ========================= --><script>
+// Live prices & order submit code will go here
+</script>
