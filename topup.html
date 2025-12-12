@@ -1,29 +1,33 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Top-up - AK TUP</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TopUp</title>
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">AK TUP</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="register.html">Register</a>
-      <a href="login.html">Login</a>
-      <a href="dashboard.html" id="dashLink">Dashboard</a>
-    </nav>
-  </header>
+    <h2>Select Top-Up</h2>
 
-  <main class="container">
-    <h2>Top-up Packages</h2>
-    <div id="products" class="grid">
-      <!-- JS দিয়ে পণ্য বসবে -->
-    </div>
-  </main>
+    <label>Player ID:</label>
+    <input id="playerId" type="text" placeholder="Enter Player ID" />
 
-  <script type="module" src="auth.js"></script>
+    <label>Amount:</label>
+    <select id="amount">
+        <option value="50">50 Diamond</option>
+        <option value="100">100 Diamond</option>
+        <option value="500">500 Diamond</option>
+    </select>
+
+    <h3>Payment Numbers</h3>
+    <p><b>Bkash:</b> 01797211045</p>
+    <p><b>Nagad:</b> 01330623352</p>
+    <p><b>Upay:</b> 01800000000</p>
+
+    <label>Txn ID:</label>
+    <input id="txnId" type="text" placeholder="Enter Payment Txn ID" />
+
+    <button id="submitOrder">Submit Order</button>
+
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
