@@ -1,31 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Topup</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8"/>
+  <title>BD TUP UP 24 — Topup</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
-<h2>Topup Service</h2>
-<select id="game">
-<option value="Free Fire">Free Fire</option>
-<option value="PUBG">PUBG</option>
-</select>
+<body class="dark">
+  <header class="app-header">
+    <h1>BD TUP UP 24</h1>
+  </header>
 
-<input id="playerID" placeholder="Player ID"><br>
+  <main class="container">
+    <section class="card">
+      <h2>Wallet Balance: <span id="wallet-balance">0৳</span></h2>
+      <button id="add-money-btn">Add Money</button>
+    </section>
 
-<select id="amount">
-<option value="100">100 Diamond - 90৳</option>
-<option value="500">500 Diamond - 430৳</option>
-<option value="1000">1000 Diamond - 850৳</option>
-</select>
+    <section class="card">
+      <h2>Live Prices — Free Fire</h2>
+      <table class="price-table">
+        <tbody id="ff-price"></tbody>
+      </table>
+    </section>
 
-<h3>Payment</h3>
-<p>Bkash: <b>01797211045</b></p>
-<p>Nagad: <b>01330623352</b></p>
+    <section class="card">
+      <h2>Place Order</h2>
+      <label>Game</label>
+      <select id="game">
+        <option value="free_fire">Free Fire</option>
+        <option value="pubg">PUBG</option>
+        <option value="mlbb">MLBB</option>
+      </select>
 
-<input id="trxID" placeholder="Transaction ID"><br>
-<button id="orderBtn">Submit Order</button>
+      <label>Player ID</label>
+      <input id="player-id" placeholder="Enter Player ID"/>
 
-<script type="module" src="js/main.js"></script>
+      <label>Amount</label>
+      <select id="price-select"></select>
+
+      <h4>Payment Numbers</h4>
+      <p>Bkash: <b>01797211045</b></p>
+      <p>Nagad: <b>01330623352</b></p>
+
+      <label>Txn ID</label>
+      <input id="txn-id" placeholder="Transaction ID"/>
+
+      <button id="submit-order">Submit Order</button>
+    </section>
+
+  </main>
+
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
