@@ -6,46 +6,52 @@ import {
   getDocs
 } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
 
-// Firebase Config (same as auth.js)
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
+  authDomain: "YOUR_DOMAIN",
   projectId: "YOUR_PROJECT_ID",
   storageBucket: "YOUR_BUCKET",
-  messagingSenderId: "YOUR_SENDER_ID",
+  messagingSenderId: "YOUR_MSG_ID",
   appId: "YOUR_APP_ID"
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const db = getFirestore();
 
 // Submit Order
-const btn = document.getElementById("submitOrder");
-if (btn) {
-  btn.addEventListener("click", async () => {
-    const pid = document.getElementById("playerId").value;
-    const amt = document.getElementById("amount").value;
-    const txn = document.getElementById("txnId").value;
+document.getElementById("orderBtn")?.addEventListener("click", async () => {
+    let game = document.getElementById("game").value;
+    let uid = document.getElementById("playerID").value;
+    let amount = document.getElementById("amount").value;
+    let trx = document.getElementById("trxID").value;
 
     await addDoc(collection(db, "orders"), {
-      playerId: pid,
-      amount: amt,
-      txnId: txn,
-      time: Date.now()
+        game, uid, amount, trx,
+        payment: "Bkash/Nagad",
+        status: "Pending"
     });
 
     alert("Order Submitted!");
-  });
+});
+
+// Admin Orders
+async function loadOrders() {
+    let box = document.getElementById("orders");
+    if (!box) return;
+
+    let snap = await getDocs(collection(db, "orders"));
+    snap.forEach(doc => {
+        let data = doc.data();
+        box.innerHTML += `
+            <div style='border:1px solid #000; margin:10px; padding:10px;'>
+                <p>Game: ${data.game}</p>
+                <p>Player ID: ${data.uid}</p>
+                <p>Diamond: ${data.amount}</p>
+                <p>TRX: ${data.trx}</p>
+                <p>Status: ${data.status}</p>
+            </div>
+        `;
+    });
 }
 
-// Admin Fetch Orders
-const ordersDiv = document.getElementById("orders");
-if (ordersDiv) {
-  (async () => {
-    const snap = await getDocs(collection(db, "orders"));
-    snap.forEach((d) => {
-      const item = d.data();
-      ordersDiv.innerHTML += `<p><b>ID:</b> ${item.playerId} | <b>Amount:</b> ${item.amount} | <b>Txn:</b> ${item.txnId}</p>`;
-    });
-  })();
-}
+loadOrders();
