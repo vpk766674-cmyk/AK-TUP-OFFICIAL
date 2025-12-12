@@ -1,55 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <meta charset="utf-8"/>
-  <title>BD TUP UP 24 — Topup</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Topup — AK TUP OFFICIAL</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="dark">
-  <header class="app-header">
-    <h1>BD TUP UP 24</h1>
+<body>
+  <header class="topbar">
+    <div class="logo">AK TUP OFFICIAL</div>
+    <div class="nav">
+      <a class="btn" href="register.html">Register</a>
+      <a class="btn alt" href="login.html">Login</a>
+    </div>
   </header>
 
   <main class="container">
-    <section class="card">
-      <h2>Wallet Balance: <span id="wallet-balance">0৳</span></h2>
-      <button id="add-money-btn">Add Money</button>
-    </section>
+    <div class="card">
+      <h2>Live Price — Free Fire</h2>
+      <table class="price-table"><tbody id="ff-price"></tbody></table>
+    </div>
 
-    <section class="card">
-      <h2>Live Prices — Free Fire</h2>
-      <table class="price-table">
-        <tbody id="ff-price"></tbody>
-      </table>
-    </section>
+    <div class="card">
+      <h2>Live Price — PUBG</h2>
+      <table class="price-table"><tbody id="pubg-price"></tbody></table>
+    </div>
 
-    <section class="card">
-      <h2>Place Order</h2>
-      <label>Game</label>
-      <select id="game">
-        <option value="free_fire">Free Fire</option>
-        <option value="pubg">PUBG</option>
-        <option value="mlbb">MLBB</option>
-      </select>
-
-      <label>Player ID</label>
-      <input id="player-id" placeholder="Enter Player ID"/>
-
-      <label>Amount</label>
-      <select id="price-select"></select>
-
-      <h4>Payment Numbers</h4>
-      <p>Bkash: <b>01797211045</b></p>
-      <p>Nagad: <b>01330623352</b></p>
-
-      <label>Txn ID</label>
-      <input id="txn-id" placeholder="Transaction ID"/>
-
-      <button id="submit-order">Submit Order</button>
-    </section>
-
+    <div class="card">
+      <h2>Live Price — MLBB</h2>
+      <table class="price-table"><tbody id="mlbb-price"></tbody></table>
+    </div>
   </main>
 
-  <script type="module" src="js/main.js"></script>
+  <footer class="footer">© AK TUP OFFICIAL</footer>
+
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
