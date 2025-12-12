@@ -1,15 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-    <title>AK TUP OFFICIAL</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AK TUP OFFICIAL</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<h1>Welcome to AK TUP OFFICIAL</h1>
-<div class="menu">
-    <a href="login.html">Login</a>
-    <a href="register.html">Register</a>
-    <a href="topup.html">Topup</a>
-</div>
+  <header class="topbar">
+    <div class="logo">AK TUP OFFICIAL</div>
+    <div class="nav">
+      <a class="btn" href="register.html">Register</a>
+      <a class="btn alt" href="login.html">Login</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="grid">
+      <!-- Example product cards - you can add more -->
+      <a class="card" href="product.html?slug=freefire-idcode">
+        <img src="https://via.placeholder.com/300x200/2ecc71/fff?text=Free+Fire" alt="">
+        <h3>আইডি কোড Top Up</h3>
+        <p>আইডি কোড দিয়ে সহজে টপআপ</p>
+      </a>
+
+      <a class="card" href="product.html?slug=airdrop">
+        <img src="https://via.placeholder.com/300x200/3498db/fff?text=Airdrop" alt="">
+        <h3>Airdrop / Bundle</h3>
+        <p>বান্ডেল ও প্যাক</p>
+      </a>
+
+      <a class="card" href="product.html?slug=freefire-packs">
+        <img src="https://via.placeholder.com/300x200/1abc9c/fff?text=Free+Fire+Packs" alt="">
+        <h3>Free Fire Packs</h3>
+        <p>সপ্তাহিক / মাসিক প্যাক</p>
+      </a>
+
+      <a class="card" href="product.html?slug=mlbb">
+        <img src="https://via.placeholder.com/300x200/9b59b6/fff?text=MLBB" alt="">
+        <h3>MLBB TopUp</h3>
+        <p>ডায়মন্ড রেট ও প্যাক</p>
+      </a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © <span id="year"></span> AK TUP OFFICIAL — Bkash: 01797211045 | Nagad: 01330623352
+  </footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
