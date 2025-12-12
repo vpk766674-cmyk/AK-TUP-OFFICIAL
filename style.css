@@ -1,120 +1,49 @@
-<!-- ========================= INDEX.HTML (HOME PAGE) ========================= --><!DOCTYPE html><html>
-<head>
-  <meta charset="utf-8" />
-  <title>AK TUP OFFICIAL — Home</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>AK TUP OFFICIAL</header>  <div class="container">
-    <div class="card">
-      <h2>Welcome!</h2>
-      <p>Fast & Trusted Topup Service • Free Fire • PUBG • MLBB</p>
-      <a href="login.html"><button>Login</button></a>
-      <a href="register.html"><button>Register</button></a>
-      <a href="topup.html"><button>Topup Now</button></a>
-    </div>
-  </div></body>
-</html><!-- ========================= LOGIN.HTML ========================= --><!DOCTYPE html><html>
-<head>
-  <meta charset="utf-8" />
-  <title>Login — AK TUP OFFICIAL</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>Login</header>
-  <div class="auth-box">
-    <h2>Login Account</h2>
-    <input id="login-email" placeholder="Email" />
-    <input id="login-password" type="password" placeholder="Password" />
-    <button id="login-btn">Login</button>
-    <p style="text-align:center;margin-top:10px;">Don't have an account? <a href="register.html">Register</a></p>
-  </div>
-</body>
-</html><!-- ========================= REGISTER.HTML ========================= --><!DOCTYPE html><html>
-<head>
-  <meta charset="utf-8" />
-  <title>Register — AK TUP OFFICIAL</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>Register</header>
-  <div class="auth-box">
-    <h2>Create Account</h2>
-    <input id="reg-email" placeholder="Email" />
-    <input id="reg-password" type="password" placeholder="Password" />
-    <button id="reg-btn">Register</button>
-    <p style="text-align:center;margin-top:10px;">Already have an account? <a href="login.html">Login</a></p>
-  </div>
-</body>
-</html><!-- ========================= TOPUP.HTML ========================= --><!DOCTYPE html><html>
-<head>
-  <meta charset="utf-8" />
-  <title>Topup — AK TUP OFFICIAL</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>Topup</header>
-  <div class="container"><div class="card">
-  <h2>Wallet Balance: <span id="wallet-balance">0৳</span></h2>
-  <button id="add-money-btn">Add Money</button>
-</div>
+/* ===== Global Reset ===== */
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,Helvetica,sans-serif}
+:root{
+  --bg1:#040712; --bg2:#071032; --card:rgba(255,255,255,0.06); --accent1:#1e90ff; --accent2:#6a5acd;
+  --muted:#9bb3d9;
+}
+body{
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  color:#e8eefc; min-height:100vh; -webkit-font-smoothing:antialiased;
+}
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:linear-gradient(90deg,#051d3d,#0a2b52);
+  box-shadow:0 6px 18px rgba(0,0,0,0.45);position:sticky;top:0;z-index:100;
+}
+.logo{font-weight:800;font-size:18px;color:#fff}
+.nav .btn{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#dff0ff;padding:8px 12px;border-radius:10px;margin-left:8px;text-decoration:none}
+.nav .btn.alt{background:transparent;border:1px solid rgba(255,255,255,0.18)}
+.container{width:94%;max-width:1100px;margin:22px auto;padding-bottom:60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.card{background:var(--card);backdrop-filter:blur(8px);border-radius:14px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.06)}
+.card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+.card h3{margin-top:10px;color:#dff5ff}
+.card p{color:var(--muted);margin-top:6px;font-size:14px}
+.footer{padding:18px;text-align:center;color:#9fbfe8;opacity:0.9}
 
-<div class="card">
-  <h2>Free Fire Live Prices</h2>
-  <table class="price-table">
-    <tbody id="ff-price"></tbody>
-  </table>
-</div>
+/* AUTH BOX */
+.auth-box{max-width:420px;margin:30px auto;background:rgba(255,255,255,0.03);padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.06)}
+.auth-box h2{color:#9ecbff;margin-bottom:10px;text-align:center}
+.auth-box input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(0,0,0,0.25);color:#eaf4ff;margin:10px 0;font-size:15px}
+button{display:inline-block;padding:12px 14px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fff;font-weight:700;cursor:pointer}
+button:hover{opacity:0.95;transform:translateY(-2px);transition:all .12s linear}
+.muted{text-align:center;color:var(--muted);margin-top:8px}
 
-<div class="card">
-  <h2>Make an Order</h2>
-  <label>Game</label>
-  <select id="game">
-    <option value="free_fire">Free Fire</option>
-    <option value="pubg">PUBG</option>
-    <option value="mlbb">MLBB</option>
-  </select>
+/* Price Table */
+.price-table{width:100%;border-collapse:collapse;margin-top:10px}
+.price-table td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.04);font-size:15px;color:#eaf4ff}
+.price-table tr:hover{background:rgba(255,255,255,0.02)}
 
-  <label>Player ID</label>
-  <input id="player-id" placeholder="Enter Player ID" />
+/* Admin table */
+.admin-table{width:100%;border-collapse:collapse}
+.admin-table th, .admin-table td{padding:10px;border-bottom:1px solid rgba(255,255,255,0.06);text-align:left}
+.admin-table th{color:#9ecbff}
 
-  <label>Diamond / UC Amount</label>
-  <select id="price-select"></select>
-
-  <h3>Payment Numbers</h3>
-  <p>Bkash (Personal): <b>01797211045</b></p>
-  <p>Nagad (Personal): <b>01330623352</b></p>
-
-  <label>Txn ID</label>
-  <input id="txn-id" placeholder="Transaction ID" />
-
-  <button id="submit-order">Submit Order</button>
-</div>
-
-  </div>  <script type="module" src="js/main.js"></script></body>
-</html><!-- ========================= ADMIN.HTML ========================= --><!DOCTYPE html><html>
-<head>
-  <meta charset="utf-8" />
-  <title>Admin Panel — AK TUP OFFICIAL</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>Admin Panel</header>  <div class="container">
-    <div class="card">
-      <h2>All Orders</h2>
-      <table class="admin-table">
-        <thead>
-          <tr>
-            <th>User</th><th>Game</th><th>Amount</th><th>Txn</th><th>Status</th><th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="admin-orders"></tbody>
-      </table>
-    </div>
-  </div>  <script type="module" src="js/admin.js"></script></body>
-</html><!-- ========================= JS/AUTH.JS (PLACEHOLDER) ========================= --><script>
-// Firebase Config placeholder
-// (You will paste your Firebase config here)
-</script><!-- ========================= JS/MAIN.JS (PLACEHOLDER) ========================= --><script>
-// Live prices & order submit code will go here
-</script>
+/* small screens */
+@media (max-width:600px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .auth-box{margin:12px}
+  .card img{height:120px}
+}
