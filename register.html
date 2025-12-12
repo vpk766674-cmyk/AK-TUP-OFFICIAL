@@ -1,14 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-<title>Register</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Register — AK TUP OFFICIAL</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<h2>Create Account</h2>
-<input id="regEmail" type="email" placeholder="Email"><br>
-<input id="regPass" type="password" placeholder="Password"><br>
-<button id="registerBtn">Register</button>
+  <header class="topbar"><div class="logo">AK TUP OFFICIAL</div></header>
+
+  <main class="container">
+    <div class="auth-box">
+      <h2>Create Account</h2>
+      <input id="regEmail" type="email" placeholder="Email">
+      <input id="regPass" type="password" placeholder="Password">
+      <button id="registerBtn">Register</button>
+      <p class="muted">Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </main>
+
 <script type="module" src="js/auth.js"></script>
 </body>
 </html>
